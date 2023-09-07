@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\VenturesController;
+use App\Http\Controllers\PropertyController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -45,6 +46,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/ventures', [VenturesController::class, 'index'])->name('ventures.index');
     Route::get('/admin/ventures-create', [VenturesController::class, 'create'])->name('ventures.create');
+
+    Route::get('/admin/properties', [PropertyController::class, 'index'])->name('properties.index');
+    Route::get('/admin/properties-create', [PropertyController::class, 'create'])->name('properties.create');
 });
 
 require __DIR__.'/auth.php';

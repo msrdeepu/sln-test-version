@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Inertia\Inertia;
-use App\Models\Ventures;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
-class VenturesController extends Controller
+class PropertyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class VenturesController extends Controller
     public function index()
     {
         {
-            $resource = Ventures::get(['*', 'id as key']);
-            return Inertia::render('Ventures/Ventureslist', [
+            $resource = Property::get(['*', 'id as key']);
+            return Inertia::render('Properties/Propertylist', [
             'resource' => $resource,
         ]);
         }
@@ -26,8 +26,8 @@ class VenturesController extends Controller
     public function create()
     {
         {
-            $resource = Ventures::get(['*', 'id as key']);
-            return Inertia::render('Ventures/Venturescreate', [
+            $resource = Property::get(['*', 'id as key']);
+            return Inertia::render('Properties/CreateProperty', [
                 'resource' => $resource,
             ]);
         }
@@ -44,7 +44,7 @@ class VenturesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ventures $ventures)
+    public function show(Property $property)
     {
         //
     }
@@ -52,7 +52,7 @@ class VenturesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ventures $ventures)
+    public function edit(Property $property)
     {
         //
     }
@@ -60,7 +60,7 @@ class VenturesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ventures $ventures)
+    public function update(Request $request, Property $property)
     {
         //
     }
@@ -68,7 +68,7 @@ class VenturesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ventures $ventures)
+    public function destroy(Property $property)
     {
         //
     }

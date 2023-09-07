@@ -9,7 +9,8 @@ import {
     DownOutlined,
     AppstoreAddOutlined,
     BranchesOutlined,
-    BoxPlotOutlined
+    BoxPlotOutlined,
+    BuildOutlined,
 } from "@ant-design/icons";
 import {
     Col,
@@ -107,6 +108,15 @@ export default function Authenticated({ header, children }) {
                             label: (
                                 <Link href={window.route("ventures.index")}>
                                     Ventures
+                                </Link>
+                            ),
+                        },
+                        {
+                            key: "properties",
+                            icon: <BuildOutlined />,
+                            label: (
+                                <Link href={window.route("properties.index")}>
+                                    Properties
                                 </Link>
                             ),
                         },

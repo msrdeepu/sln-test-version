@@ -1,0 +1,5 @@
+.hr-ruler {
+    border-style: groove;
+    width: 1;
+    border-color: gray;
+}
