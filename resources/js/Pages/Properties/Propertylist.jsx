@@ -87,7 +87,7 @@ function Propertylist(props) {
             <Card title={`Welcome to Properties Page`}>
                 <Typography.Text>
                     <div className="top-container">
-                        <h3>Ventures List</h3>
+                        <h3>Properties List</h3>
                         <Link
                             href={window.route("properties.create")}
                             type="button"

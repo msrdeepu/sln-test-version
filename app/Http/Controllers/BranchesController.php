@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Branches;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 class BranchesController extends Controller
 {
     /**
@@ -24,10 +25,13 @@ class BranchesController extends Controller
     public function create()
     {
         {
-            $resource = Branches::get(['*', 'id as key']);
+            $user = Auth::user();
+            $Branch = Branches::get([ 'id AS key']);
             return Inertia::render('Branches/Createbranch', [
-                'resource' => $resource,
+            'user' => $user,
+            'record'=> new Branches(),
             ]);
+
         }
     }
 
@@ -36,7 +40,13 @@ class BranchesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $data= Branches::create([
+            // "company"=>$request->company,
+        ]);
+
+      return to_route('branches.create');
+
     }
 
     /**

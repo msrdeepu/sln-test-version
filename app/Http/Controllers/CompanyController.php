@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\companies;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-
-class CompaniesController extends Controller
+use Illuminate\Support\Facades\Auth;
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $resource = companies::get(['*', 'id as key']);
-        return Inertia::render('NewCompany/Companylist', [
+        $resource = Company::get(['*', 'id as key']);
+        return Inertia::render('Company/List', [
             'resource' => $resource,
         ]);
     }
@@ -25,9 +25,11 @@ class CompaniesController extends Controller
     public function create()
     {
         {
-            $resource = companies::get(['*', 'id as key']);
-            return Inertia::render('NewCompany/Createcompany', [
-                'resource' => $resource,
+            $user = Auth::user();
+            $resource = Company::get(['*', 'id as key']);
+            return Inertia::render('Company/Createcompany', [
+                'user' => $user,
+                'record'=> new Company(),
             ]);
         }
     }
@@ -37,13 +39,16 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $data= Company::create([
+            // "company"=>$request->company,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(companies $companies)
+    public function show()
     {
         //
     }
@@ -59,7 +64,7 @@ class CompaniesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, companies $companies)
+    public function update(Request $request)
     {
         //
     }
@@ -67,7 +72,7 @@ class CompaniesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(companies $companies)
+    public function destroy()
     {
         //
     }

@@ -11,6 +11,10 @@ import {
     BranchesOutlined,
     BoxPlotOutlined,
     BuildOutlined,
+    SettingOutlined,
+    GroupOutlined,
+    BookOutlined,
+    ClusterOutlined,
 } from "@ant-design/icons";
 import {
     Col,
@@ -117,6 +121,43 @@ export default function Authenticated({ header, children }) {
                             label: (
                                 <Link href={window.route("properties.index")}>
                                     Properties
+                                </Link>
+                            ),
+                        },
+                        {
+                            key: "setting",
+                            icon: <SettingOutlined />,
+                            label: (
+                                <Link href={window.route("setting.create")}>
+                                    Settings
+                                </Link>
+                            ),
+                        },
+                        {
+                            key: "category",
+                            icon: <GroupOutlined />,
+                            label: (
+                                <Link href={window.route("category.index")}>
+                                    Categories
+                                </Link>
+                            ),
+                        },
+                        {
+                            key: "page",
+                            icon: <BookOutlined />,
+                            label: (
+                                <Link href={window.route("page.index")}>
+                                    Content
+                                </Link>
+                            ),
+                        },
+
+                        {
+                            key: "widget",
+                            icon: <ClusterOutlined />,
+                            label: (
+                                <Link href={window.route("widget.index")}>
+                                    Widgets
                                 </Link>
                             ),
                         },
