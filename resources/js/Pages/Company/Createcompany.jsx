@@ -10,7 +10,6 @@ import {
     message,
     Button,
 } from "antd";
-import { useState } from "react";
 const { TextArea } = Input;
 
 
@@ -85,29 +84,6 @@ function Createcompany({ props, record }) {
         console.log(data);
         router.post("/admin/branches/store", data);
     }
-    // const submitAfterHandler = () => {
-    //     form.submit();
-    //     form.setFieldsValue({
-    //         companyname: "",
-    //         domain: "",
-    //         gstax: "",
-    //         pannum: "",
-    //         uipid: "",
-    //         email: "",
-    //         phonenum: "",
-    //         mobilenum: "",
-    //         websiteslug: "",
-    //         logo: "",
-    //         qrcode: "",
-    //         astatus: "",
-    //         address: "",
-    //         bankdetails: "",
-    //         terms: "",
-    //         note: "",
-    //         footer: "",
-    //     })
-
-    // }
     return (
         <>
             <Head title="Dashboard" />
@@ -251,22 +227,6 @@ function Createcompany({ props, record }) {
                                     className="input-item" type="file" />
                             </Form.Item>
                         </Col>
-                        {/* <Col xs={24} md={8}>
-                            <Form.Item label="QR Code">
-                                <Select
-                                    defaultValue="Demo"
-                                    style={{
-                                        width: "100%",
-                                    }}
-                                    options={[
-                                        {
-                                            value: "lucy",
-                                            label: "Lucy",
-                                        },
-                                    ]}
-                                />
-                            </Form.Item>
-                        </Col> */}
                         <Col xs={24} md={12}>
                             <Form.Item
                                 name={"astatus"}

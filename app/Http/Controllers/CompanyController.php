@@ -41,7 +41,7 @@ class CompanyController extends Controller
     {
         dd($request);
         $data= Company::create([
-            // "company"=>$request->company,
+        
         ]);
     }
 

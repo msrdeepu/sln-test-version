@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Ventures;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class VenturesController extends Controller
@@ -26,9 +27,11 @@ class VenturesController extends Controller
     public function create()
     {
         {
+            $user = Auth::user();
             $resource = Ventures::get(['*', 'id as key']);
             return Inertia::render('Ventures/Venturescreate', [
-                'resource' => $resource,
+                'user' => $user,
+                'record'=> new Ventures(),
             ]);
         }
     }
@@ -38,7 +41,13 @@ class VenturesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $data= Ventures::create([
+            // "company"=>$request->company,
+        ]);
+
+      return to_route('ventures.create');
+
     }
 
     /**

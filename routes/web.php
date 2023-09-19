@@ -54,9 +54,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/ventures', [VenturesController::class, 'index'])->name('ventures.index');
     Route::get('/admin/ventures-create', [VenturesController::class, 'create'])->name('ventures.create');
+    Route::post('/admin/ventures/store', [VenturesController::class, 'store'])->name('ventures.store');
 
     Route::get('/admin/properties', [PropertyController::class, 'index'])->name('properties.index');
     Route::get('/admin/properties-create', [PropertyController::class, 'create'])->name('properties.create');
+    Route::post('/admin/properties/store', [PropertyController::class, 'store'])->name('properties.store');
 
 
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');

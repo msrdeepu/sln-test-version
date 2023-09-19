@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Property;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class PropertyController extends Controller
 {
     /**
@@ -26,9 +26,11 @@ class PropertyController extends Controller
     public function create()
     {
         {
+            $user = Auth::user();
             $resource = Property::get(['*', 'id as key']);
             return Inertia::render('Properties/CreateProperty', [
-                'resource' => $resource,
+                'user' => $user,
+                'record'=> new Property(),
             ]);
         }
     }
@@ -38,7 +40,10 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         dd($request);
+        $data= Company::create([
+          
+        ]);
     }
 
     /**
