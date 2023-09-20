@@ -22,8 +22,8 @@ function Createcompany({ props, record }) {
         companyname: record.companyname,
         domain: record.domain,
         gstax: record.gstax,
-        pannum: record.pannum,
-        uipid: record.upiid,
+        pan: record.pan,
+        upiId: record.upiid,
         email: record.email,
         phonenum: record.phonenum,
         mobilenum: record.mobilenum,
@@ -47,8 +47,8 @@ function Createcompany({ props, record }) {
             companyname: "",
             domain: "",
             gstax: "",
-            pannum: "",
-            uipid: "",
+            pan: "",
+            upiId: "",
             email: "",
             phonenum: "",
             mobilenum: "",
@@ -142,21 +142,21 @@ function Createcompany({ props, record }) {
                             </Form.Item>
                         </Col>
                         <Col xs={24} md={12}>
-                            <Form.Item label="PAN NO" name="pannum">
+                            <Form.Item label="PAN NO" name="pan">
                                 <Input type="text" placeholder="PAN NO"
-                                    name="pannum"
+                                    name="pan"
                                     onChange={(e) =>
-                                        setData("pannum", e.target.value)
+                                        setData("pan", e.target.value)
                                     }
                                 />
                             </Form.Item>
                         </Col>
                         <Col xs={24} md={12}>
-                            <Form.Item label="UPI ID" name="upiid">
+                            <Form.Item label="UPI ID" name="upiId">
                                 <Input type="text" placeholder="UPI ID"
-                                    name="upiid"
+                                    name="upiId"
                                     onChange={(e) =>
-                                        setData("upiid", e.target.value)
+                                        setData("upiId", e.target.value)
                                     } />
                             </Form.Item>
                         </Col>

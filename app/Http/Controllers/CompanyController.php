@@ -39,10 +39,38 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
+        $logo= null;
+        $qrcode=null;
+        if (request->file('logo')){
+            $logo = $request->file('logo')->store('company','public' );
+        }
+
+        if ($request->file('qrcode')){
+            $qrcode = $request->file('qrcode')->store('company','public');
+        }
+
         $data= Company::create([
-        
+            "companyname"=> $request->companyname,
+            "domain"=> $request->domain,
+            "gstax"=> $request->gstax,
+            "pan"=> $request->pan,
+            "upiId"=> $request->upiid,
+            "email"=> $request->email,
+            "phonenum"=> $request->phonenum,
+            "mobilenum"=> $request->mobilenum,
+            "websiteslug"=> $request->websiteslug,
+            "logo"=>$logo,
+            "qrcode"=> $qrcode,
+            "astatus"=> $request->astatus,
+            "address"=> $request->address,
+            "bankdetails"=> $request->bankdetails,
+            "terms"=> $request->terms,
+            "note"=> $request->note,
+            "footer"=> $request->footer
         ]);
+        $data->save();
+        return to_route('company.index');
     }
 
     /**
