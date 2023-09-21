@@ -12,13 +12,10 @@ import {
 } from "antd";
 const { TextArea } = Input;
 
-
-
-
 function Createcompany({ props, record }) {
 
     //useForm
-    const { data, setData, post, patch, processing, errors, reset } = useForm({
+    const { submit, data, setData, post, patch, processing, errors, reset } = useForm({
         companyname: record.companyname,
         domain: record.domain,
         gstax: record.gstax,
@@ -36,12 +33,11 @@ function Createcompany({ props, record }) {
         terms: record.terms,
         note: record.note,
         footer: record.footer
-
-
     })
+    //clear form
     const [messageApi, contextHolder] = message.useMessage();
     const key = 'updatable';
-    const openMessage = () => {
+    const afterSubmitForm = () => {
         form.submit();
         form.setFieldsValue({
             companyname: "",
@@ -79,17 +75,20 @@ function Createcompany({ props, record }) {
     //antd-form
     const [form] = Form.useForm();
 
-    //submitHandler
-    const submitHandler = (values) => {
-        console.log(data);
-        router.post("/admin/branches/store", data);
+    function submitHandler(e) {
+        // e.preventDefault()
+        post(
+            route("company.store", data, {
+                forceFormData: true,
+            })
+        );
     }
     return (
         <>
             <Head title="Dashboard" />
 
             <Card title={`Company Details`}>
-                <Form layout="vertical"
+                <Form layout="vertical" method="post"
                     onFinish={submitHandler}
                     form={form}>
                     <Row gutter={[8, 4]}>
@@ -297,7 +296,7 @@ function Createcompany({ props, record }) {
                         <p>Note: Fields Marked with (*) Astrik is Mandatory.</p>
                     </div>
                     <div className="btns-container">
-                        <Button htmlType="submit" onClick={openMessage} className="btn-item" type="primary">
+                        <Button htmlType="submit" onClick={afterSubmitForm} className="btn-item" type="primary">
                             Save
                         </Button>
                         <Button className="btn-item" type="primary" danger>

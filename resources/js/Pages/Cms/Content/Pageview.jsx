@@ -3,7 +3,6 @@ import { Head, useForm, Link } from "@inertiajs/react";
 import { Card, Tabs, Button, Form, Typography } from "antd";
 const { Paragraph } = Typography;
 
-const { TabPane } = Tabs;
 
 import {
     GlobalOutlined,

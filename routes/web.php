@@ -60,7 +60,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/properties-create', [PropertyController::class, 'create'])->name('properties.create');
     Route::post('/admin/properties/store', [PropertyController::class, 'store'])->name('properties.store');
 
-
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
     Route::get('/setting/{id}/edit', [SettingController::class, 'edit'])->name('setting.edit');
     Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');

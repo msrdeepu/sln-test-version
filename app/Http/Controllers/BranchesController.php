@@ -42,7 +42,7 @@ class BranchesController extends Controller
     {
         dd($request);
         $data= Branches::create([
-            // "company"=>$request->company,
+            
         ]);
 
       return to_route('branches.create');
