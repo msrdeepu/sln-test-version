@@ -26,7 +26,6 @@ class CompanyController extends Controller
     {
         {
             $user = Auth::user();
-            $resource = Company::get(['*', 'id as key']);
             return Inertia::render('Company/Createcompany', [
                 'user' => $user,
                 'record'=> new Company(),
@@ -42,12 +41,15 @@ class CompanyController extends Controller
         // dd($request);
         $logo= null;
         $qrcode=null;
+        $requestData = $request->all();
         if (request->file('logo')){
             $logo = $request->file('logo')->store('company','public' );
+            $requestData['logo'] = $logo;
         }
 
         if ($request->file('qrcode')){
             $qrcode = $request->file('qrcode')->store('company','public');
+            $requestData['qrcode'] = $qrcode;
         }
 
         $data= Company::create([
@@ -69,6 +71,7 @@ class CompanyController extends Controller
             "note"=> $request->note,
             "footer"=> $request->footer
         ]);
+        // $data = Company::create($requestData);
         $data->save();
         return to_route('company.index');
     }

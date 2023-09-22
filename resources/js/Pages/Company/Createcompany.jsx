@@ -1,5 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, useForm, router } from "@inertiajs/react";
+import { Head, useForm, router } from "@inertiajs/react";
+import CompanyForm from "./CompanyForm";
 import {
     Card,
     Form,
@@ -7,7 +8,6 @@ import {
     Radio,
     Row,
     Col,
-    message,
     Button,
 } from "antd";
 const { TextArea } = Input;
@@ -15,7 +15,7 @@ const { TextArea } = Input;
 function Createcompany({ props, record }) {
 
     //useForm
-    const { submit, data, setData, post, patch, processing, errors, reset } = useForm({
+    const { data, setData, post, patch, processing, errors, reset } = useForm({
         companyname: record.companyname,
         domain: record.domain,
         gstax: record.gstax,
@@ -34,61 +34,42 @@ function Createcompany({ props, record }) {
         note: record.note,
         footer: record.footer
     })
-    //clear form
-    const [messageApi, contextHolder] = message.useMessage();
-    const key = 'updatable';
-    const afterSubmitForm = () => {
-        form.submit();
-        form.setFieldsValue({
-            companyname: "",
-            domain: "",
-            gstax: "",
-            pan: "",
-            upiId: "",
-            email: "",
-            phonenum: "",
-            mobilenum: "",
-            websiteslug: "",
-            logo: "",
-            qrcode: "",
-            astatus: "",
-            address: "",
-            bankdetails: "",
-            terms: "",
-            note: "",
-            footer: "",
-        })
-        messageApi.open({
-            key,
-            type: 'loading',
-            content: 'Loading...',
-        });
-        setTimeout(() => {
-            messageApi.open({
-                key,
-                type: 'success',
-                content: 'New Company Added Succesfully',
-                duration: 2,
-            });
-        }, 1000);
-    };
-    //antd-form
-    const [form] = Form.useForm();
 
-    function submitHandler(e) {
-        // e.preventDefault()
-        post(
-            route("company.store", data, {
-                forceFormData: true,
-            })
-        );
+    function submitHandler(values) {
+        console.log(data)
+        post("/admin/company/store", data);
+
     }
+    //clear form
+    // const afterSubmitForm = () => {
+    //     form.submit();
+    //     form.setFieldsValue({
+    //         companyname: "",
+    //         domain: "",
+    //         gstax: "",
+    //         pan: "",
+    //         upiId: "",
+    //         email: "",
+    //         phonenum: "",
+    //         mobilenum: "",
+    //         websiteslug: "",
+    //         logo: "",
+    //         qrcode: "",
+    //         astatus: "",
+    //         address: "",
+    //         bankdetails: "",
+    //         terms: "",
+    //         note: "",
+    //         footer: "",
+    //     })
+    // };
+
     return (
         <>
             <Head title="Dashboard" />
 
             <Card title={`Company Details`}>
-                <Form layout="vertical" method="post"
+                {/* <Form layout="vertical" method="post"
                     onFinish={submitHandler}
                     form={form}>
                     <Row gutter={[8, 4]}>
@@ -303,7 +284,8 @@ function Createcompany({ props, record }) {
                             Cancel
                         </Button>
                     </div>
-                </Form>
+                </Form> */}
+                <CompanyForm submitForm={submitHandler} data={data} setData={setData} saveButton={"Save"} />
             </Card>
         </>
     );

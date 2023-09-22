@@ -10,7 +10,6 @@ function SettingsForm({
 }) {
     const [form] = Form.useForm();
 
-    //console.log(sstatus);
     const handleSChange = (value) => {
         setData("status", value);
     };

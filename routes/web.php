@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/company', [CompanyController::class, 'index'])->name('company.index');
     Route::get('/admin/company-create', [CompanyController::class, 'create'])->name('company.create');
-    Route::get('/admin/company/store', [CompanyController::class, 'store'])->name('company.store');
+    Route::post('/admin/company/store', [CompanyController::class, 'store'])->name('company.store');
 
     Route::get('/admin/branches', [BranchesController::class, 'index'])->name('branches.index');
     Route::get('/admin/branches-create', [BranchesController::class, 'create'])->name('branches.create');
