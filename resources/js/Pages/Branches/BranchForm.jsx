@@ -1,36 +1,38 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm, router } from "@inertiajs/react";
 import { Card, Form, Input, Radio, Row, Col, Select, Button } from "antd";
-import BranchForm from "./BranchForm";
 
 const { TextArea } = Input;
 
-function Createbranch({ props, record }) {
-    //useFormHook
-    const { data, setData, post, patch, processing, errors, reset } = useForm({
-        code: record.code,
-        company: record.company || "-- Select--",
-        status: record.status,
-        location: record.location,
-        email: record.email,
-        phonenumber: record.phonenumber,
-        mobilenumber: record.mobilenumber,
-        address: record.address,
-    });
+function BranchForm({ data, setData, submitForm, saveButton }) {
+    const [form] = Form.useForm();
 
 
-    const submitForm = (values) => {
-        console.log(data);
-        router.post("/admin/branches/store", data);
+    const handleCompany = (value) => {
+        setData("company", value);
+        console.log(value);
     };
 
+
+    const handelForm = () => {
+        form.submit();
+        form.setFieldsValue({
+            code: "",
+            company: "",
+            status: "",
+            location: "",
+            email: "",
+            phonenumber: "",
+            mobilenumber: "",
+            address: "",
+        });
+    };
 
     return (
         <>
             <Head title="Dashboard" />
 
             <Card title={`Branch Details`}>
-                {/* <Form
+                <Form
                     layout="vertical"
                     form={form}
                     onFinish={submitForm}
@@ -101,7 +103,7 @@ function Createbranch({ props, record }) {
                             </Form.Item>
                         </Col>
                         <Col xs={24} md={12}>
-                            <Form.Item label="Email Address">
+                            <Form.Item label="Email Address" name={"email"}>
                                 <Input
                                     name="email"
                                     type="text"
@@ -113,7 +115,7 @@ function Createbranch({ props, record }) {
                             </Form.Item>
                         </Col>
                         <Col xs={24} md={12}>
-                            <Form.Item label="Phone Number">
+                            <Form.Item label="Phone Number" name={"phonenumber"}>
                                 <Input
                                     name="phonenumber"
                                     type="text"
@@ -125,7 +127,7 @@ function Createbranch({ props, record }) {
                             </Form.Item>
                         </Col>
                         <Col xs={24} md={12}>
-                            <Form.Item label="Mobile Number">
+                            <Form.Item label="Mobile Number" name={"mobilenumber"}>
                                 <Input
                                     name="mobilenumber"
                                     type="text"
@@ -167,7 +169,7 @@ function Createbranch({ props, record }) {
                             </Form.Item>
                         </Col>
                         <Col xs={24} md={12}>
-                            <Form.Item label="Address">
+                            <Form.Item label="Address" name={"address"}>
                                 <TextArea
                                     name="address"
                                     placeholder="Address Here"
@@ -188,19 +190,18 @@ function Createbranch({ props, record }) {
                             className="btn-item"
                             type="primary"
                         >
-                            Save
+                            {saveButton}
                         </Button>
                         <Button className="btn-item" type="primary" danger>
                             Cancel
                         </Button>
                     </div>
-                </Form> */}
-                <BranchForm submitForm={submitForm} setData={setData} data={data} saveButton={"Save"} />
+                </Form>
             </Card>
         </>
     );
 }
 
-Createbranch.layout = (page) => <AuthenticatedLayout children={page} />;
 
-export default Createbranch;
+
+export default BranchForm;

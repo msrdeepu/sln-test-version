@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('company');
             $table->text('location');
             $table->text('email')->nullable();
-            $table->integer('phone')->nullable();
-            $table->integer('mobile')->nullable();
+            $table->integer('phonenumber')->nullable();
+            $table->integer('mobilenumber')->nullable();
             $table->string('status');
             $table->text('address')->nullable();
             $table->timestamps();

@@ -26,7 +26,6 @@ class BranchesController extends Controller
     {
         {
             $user = Auth::user();
-            $Branch = Branches::get([ 'id AS key']);
             return Inertia::render('Branches/Createbranch', [
             'user' => $user,
             'record'=> new Branches(),
@@ -40,12 +39,19 @@ class BranchesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+       // dd($request);
         $data= Branches::create([
-            
+            "code"=> $request->code,
+            "company"=> $request->company,
+            "status"=> $request->status,
+            "location"=> $request->location,
+            "email"=> $request->email,
+            "phonenumber"=> $request->phonenumber,
+            "mobilenumber"=> $request->mobilenumber,
+            "address"=> $request->address,
         ]);
-
-      return to_route('branches.create');
+        $data->save();
+        return to_route('branches.create');
 
     }
 

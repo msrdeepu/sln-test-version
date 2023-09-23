@@ -39,18 +39,18 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $logo= null;
-        $qrcode=null;
-        $requestData = $request->all();
-        if (request->file('logo')){
-            $logo = $request->file('logo')->store('company','public' );
-            $requestData['logo'] = $logo;
-        }
+        // $logo= null;
+        // $qrcode=null;
+        // $requestData = $request->all();
+        // if (request->file('logo')){
+        //     $logo = $request->file('logo')->store('company','public' );
+        //     $requestData['logo'] = $logo;
+        // }
 
-        if ($request->file('qrcode')){
-            $qrcode = $request->file('qrcode')->store('company','public');
-            $requestData['qrcode'] = $qrcode;
-        }
+        // if ($request->file('qrcode')){
+        //     $qrcode = $request->file('qrcode')->store('company','public');
+        //     $requestData['qrcode'] = $qrcode;
+        // }
 
         $data= Company::create([
             "companyname"=> $request->companyname,
@@ -62,8 +62,8 @@ class CompanyController extends Controller
             "phonenum"=> $request->phonenum,
             "mobilenum"=> $request->mobilenum,
             "websiteslug"=> $request->websiteslug,
-            "logo"=>$logo,
-            "qrcode"=> $qrcode,
+            "logo"=>$request->logo,
+            "qrcode"=>$request-> qrcode,
             "astatus"=> $request->astatus,
             "address"=> $request->address,
             "bankdetails"=> $request->bankdetails,
