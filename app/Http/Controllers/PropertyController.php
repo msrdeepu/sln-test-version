@@ -40,10 +40,46 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-         dd($request);
-        $data= Company::create([
+         //dd($request);
+        $data= Property::create([
+            "code" => $request->code,
+            "venture" => $request->venture,
+            "plotnum" => $request->plotnum,
+            "title" => $request->title,
+            "location" => $request->location,
+            "villagearea" => $request->villagearea,
+            "surveynum" => $request->surveynum,
+            "plotfacing" => $request->plotfacing,
+            "northbound" => $request->northbound,
+            "southbound" => $request->southbound,
+            "eastbound" => $request->eastbound,
+            "westbound" => $request->westbound,
+            "roadsize" => $request->roadsize,
+            "customer" => $request->customer,
+            "dispname" => $request->dispname,
+            "selectagent" => $request->selectagent,
+            "agentcode" => $request->agentcode,
+            "length" => $request->length,
+            "width" => $request->width,
+            "dimensions" => $request->dimensions,
+            "tsqfeets" => $request->tsqfeets,
+            "tsqyards" => $request->tsqyards,
+            "tankanams" => $request->tankanams,
+            "ankanamcost" => $request->ankanamcost,
+            "plotprice" => $request->plotprice,
+            "discount" => $request->discount,
+            "totalcost" => $request->totalcost,
+            "dobooking" => $request->dobooking,
+            "status" => $request->status,
+            "eachinstallment" => $request->eachinstallment,
+            "totalinstallamount" => $request->totalinstallamount,
+            "approvauthority" => $request->approvauthority,
+            "address" => $request->address,
+            "stremarks" => $request->stremarks
           
         ]);
+        $data->save();
+        return to_route('properties.index');
     }
 
     /**

@@ -28,7 +28,6 @@ class VenturesController extends Controller
     {
         {
             $user = Auth::user();
-            $resource = Ventures::get(['*', 'id as key']);
             return Inertia::render('Ventures/Venturescreate', [
                 'user' => $user,
                 'record'=> new Ventures(),
@@ -41,12 +40,35 @@ class VenturesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //dd($request);
         $data= Ventures::create([
-            // "company"=>$request->company,
+            "code" => $request->code,
+            "sstatus" => $request->sstatus,
+            "title" => $request->title,
+            "templateslug" => $request->templateslug,
+            "slug" => $request->slug,
+            "mapheight" => $request->mapheight,
+            "location" => $request->location,
+            "mapwidth" => $request->mapwidth,
+            "branch" => $request->branch,
+            "salevel" => $request->salevel,
+            "locationimg" => $request->locationimg,
+            "layout" => $request->layout,
+            "layoutmap" => $request->layoutmap,
+            "pagetitleseo" => $request->pagetitleseo,
+            "banner" => $request->banner,
+            "largemap" => $request->largemap,
+            "metadescription" => $request->metadescription,
+            "metakeywords" => $request->metakeywords,
+            "address" => $request->address,
+            "published" => $request->published,
+            "mainbody" => $request->mainbody,
+            "extrabody"=>$request->extrabody,
+            "bodystyles" => $request->bodystyles,
+            "otherdetails" => $request->otherdetails
         ]);
-
-      return to_route('ventures.create');
+        $data->save();
+        return to_route('ventures.create');
 
     }
 
