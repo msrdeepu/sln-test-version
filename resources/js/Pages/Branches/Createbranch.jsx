@@ -27,6 +27,7 @@ function Createbranch({ props, record }) {
 
     return (
         <>
+            {console.log(record)}
             <Head title="Dashboard" />
 
             <Card title={`Branch Details`}>

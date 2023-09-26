@@ -3,7 +3,7 @@ import { Card, Form, Input, Radio, Row, Col, Select, Button } from "antd";
 
 const { TextArea } = Input;
 
-function BranchForm({ data, setData, submitForm, saveButton }) {
+function BranchForm({ data, setData, submitForm, saveButton, record }) {
     const [form] = Form.useForm();
 
 
