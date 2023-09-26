@@ -77,7 +77,11 @@ const Settingsview = ({ props, settingsList, stype, sstatus, record }) => {
             dataIndex: "actions",
             render: (_, record) => (
                 <Space size="middle">
-                    <Button id={record.id} onClick={editRecord} type="primary">
+                    <Button
+                        id={record.id}
+                        onClick={editRecord}
+                        type="primary"
+                    >
                         Edit
                     </Button>
                     <Button

@@ -1,6 +1,19 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import { Card, Table, Typography, Button, Col, Row, Space } from "antd";
+
+//delete Action
+function destroyRecord(e) {
+    if (confirm("Are you sure you want to delete this record ?")) {
+        router.delete(route("branches.destroy", e.currentTarget.id));
+    }
+}
+
+//Loading Edit View
+function editRecord(e) {
+    router.get(route("branches.edit", e.currentTarget.id));
+}
+
 //icons
 import {
     EditOutlined,
@@ -13,7 +26,7 @@ const columns = [
     {
         title: "CODE",
         dataIndex: "code",
-        key: "id",
+        key: "key",
     },
     {
         title: "Location",
@@ -27,24 +40,24 @@ const columns = [
     },
     {
         title: "Phone",
-        dataIndex: "phone",
+        dataIndex: "phonenumber",
         key: "key",
     },
 
     {
         title: "Mobile",
-        dataIndex: "mobile",
+        dataIndex: "mobilenumber",
         key: "key",
     },
     {
         title: "Active",
-        dataIndex: "active",
+        dataIndex: "status",
         key: "key",
     },
 
     {
         title: "Created On",
-        dataIndex: "created",
+        dataIndex: "created_at",
         key: "key",
     },
     {
@@ -56,7 +69,7 @@ const columns = [
                     style={{ margin: "5px" }}
                     shape="circle"
                     id={record.id}
-                    // onClick={editRecord}
+                    onClick={editRecord}
                     icon={<EditOutlined />}
                 />
                 <Button
@@ -64,7 +77,7 @@ const columns = [
                     shape="circle"
                     id={record.id}
                     icon={<DeleteOutlined />}
-                    // onClick={destroyRecord}
+                    onClick={destroyRecord}
                     danger
                 />
             </Space>
@@ -72,18 +85,10 @@ const columns = [
     },
 ];
 
-const data = [
-    {
-        id: "1",
-        code: "code",
-
-        email: "demo@demo.com",
-    },
-];
 
 
 
-function Branches(props) {
+function Branches({ props, branchesList }) {
     return (
         <>
             <Head title="Dashboard" />
@@ -104,7 +109,11 @@ function Branches(props) {
                             </Button>
                         </Link>
                     </div>
-                    <Table columns={columns} dataSource={data} size="small" />
+                    <Table
+                        columns={columns}
+                        dataSource={branchesList}
+                        size="small"
+                    />
                 </Typography.Text>
             </Card>
         </>

@@ -14,7 +14,7 @@ const { TextArea } = Input;
 
 function CreateProperty({ props, record }) {
 
-    const { data, setData, post, atch, processing, errors, reset } = useForm({
+    const { data, setData, post, patch, processing, errors, reset } = useForm({
         code: record.code,
         venture: record.venture,
         plotnum: record.plotnum,

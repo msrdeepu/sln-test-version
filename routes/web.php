@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/branches', [BranchesController::class, 'index'])->name('branches.index');
     Route::get('/admin/branches-create', [BranchesController::class, 'create'])->name('branches.create');
     Route::post('/admin/branches/store', [BranchesController::class, 'store'])->name('branches.store');
+    Route::get('/admin/branches/{id}/edit',[BranchesController::class, 'edit'])->name('branches.edit');
+    Route::delete('/admin/branches/{id}', [BranchesController::class, 'destroy']) -> name('branches.destroy');
 
     Route::get('/admin/ventures', [VenturesController::class, 'index'])->name('ventures.index');
     Route::get('/admin/ventures-create', [VenturesController::class, 'create'])->name('ventures.create');

@@ -1,4 +1,4 @@
-import { Head, Link, useForm, router } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import { Card, Form, Input, Radio, Row, Col, Select, Button } from "antd";
 
 const { TextArea } = Input;
@@ -37,6 +37,16 @@ function BranchForm({ data, setData, submitForm, saveButton }) {
                     form={form}
                     onFinish={submitForm}
                     autoComplete="on"
+                    initialValues={{
+                        code: data.code,
+                        company: data.company,
+                        status: data.status,
+                        location: data.location,
+                        email: data.email,
+                        phonenumber: data.phonenumber,
+                        mobilenumber: data.mobilenumber,
+                        address: data.address,
+                    }}
                 >
                     <Row gutter={[8, 4]}>
                         <Col xs={24} md={12}>

@@ -14,8 +14,10 @@ class BranchesController extends Controller
     public function index()
     {
         $resource = Branches::get(['*', 'id as key']);
+        $branches = Branches::get(['id','code', 'company', 'location','email','created_at', 'phonenumber', 'mobilenumber', 'status', 'address', 'id AS key']);
+        
         return Inertia::render('Branches/Branchlist', [
-            'resource' => $resource,
+            'branchesList' => $branches,
         ]);
     }
 
@@ -51,7 +53,7 @@ class BranchesController extends Controller
             "address"=> $request->address,
         ]);
         $data->save();
-        return to_route('branches.create');
+        return to_route('branches.index');
 
     }
 
@@ -66,24 +68,41 @@ class BranchesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Branches $branches)
+    public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $branches = Branches::get(['id','code', 'company', 'location','email','created_at', 'phonenumber', 'mobilenumber', 'status', 'address', 'id AS key']);
+        $branh= Branches::find($id);
+        return Inertia::render('Branches/Createbranch', [
+            'user' => $user,
+            'record' => $branches,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Branches $branches)
+    public function update(Request $request, $id)
     {
-        //
+        $data= Branches::where('id','=',$id)->update([
+            "code"=> $request->code,
+            "company"=> $request->company,
+            "status"=> $request->status,
+            "location"=> $request->location,
+            "email"=> $request->email,
+            "phonenumber"=> $request->phonenumber,
+            "mobilenumber"=> $request->mobilenumber,
+            "address"=> $request->address,
+    
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Branches $branches)
+    public function destroy($id)
     {
-        //
+        Branches::find($id)->delete();
+        return to_route('branches.index');
     }
 }
