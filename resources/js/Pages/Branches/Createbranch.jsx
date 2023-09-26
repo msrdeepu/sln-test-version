@@ -37,6 +37,7 @@ function Createbranch({ props, record }) {
                     data={data}
                     saveButton={record.name == undefined ? "Add" : "Save"}
                 />
+                {/* {console.log(record.name)} */}
             </Card>
         </>
     );
