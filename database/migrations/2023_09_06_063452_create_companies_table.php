@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('pan')->nullable();
             $table->text('upiId')->nullable();
             $table->text('email')->nullable();
-            $table->integer('phonenum')->nullable();
-            $table->integer('mobilenum')->nullable();
+            $table->bigInteger('phonenum')->nullable();
+            $table->bigInteger('mobilenum')->nullable();
             $table->text('websiteslug')->nullable();
             $table->text('logo')->nullable();
             $table->text('qrcode')->nullable();

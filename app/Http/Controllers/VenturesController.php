@@ -14,9 +14,10 @@ class VenturesController extends Controller
     public function index()
     {
         {
-            $resource = Ventures::get(['*', 'id as key']);
+            $user = Auth::user();
+            $venture = Ventures::get(['id','code','sstatus', 'title', 'templateslug','slug','mapheight','location','mapwidth','branch','salevel','locationimg', 'layout', 'layoutmap', 'pagetitleseo','banner','largemap', 'metadescription', 'metakeywords', 'published', 'mainbody', 'extrabody', 'bodystyles', 'otherdetails', 'created_at', 'address', 'id as key']);
             return Inertia::render('Ventures/Ventureslist', [
-            'resource' => $resource,
+            'ventruesList' => $venture,
         ]);
         }
     }
@@ -68,7 +69,7 @@ class VenturesController extends Controller
             "otherdetails" => $request->otherdetails
         ]);
         $data->save();
-        return to_route('ventures.create');
+        return to_route('ventures.index');
 
     }
 
@@ -99,8 +100,9 @@ class VenturesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ventures $ventures)
+    public function destroy($id)
     {
-        //
+        Ventures::find($id)->delete();
+        return to_route('ventures.index');
     }
 }

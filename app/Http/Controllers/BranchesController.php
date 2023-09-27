@@ -68,11 +68,11 @@ class BranchesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($code)
+    public function edit($id)
     {
         $user = Auth::user();
         $branches = Branches::get(['id','code', 'company', 'location','email', 'phonenumber', 'mobilenumber', 'status', 'address', 'id AS key']);
-        $branh= Branches::find($code);
+        $branh= Branches::find($id);
         return Inertia::render('Branches/Createbranch', [
             'user' => $user,
             'record' => $branches,
@@ -82,9 +82,9 @@ class BranchesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $code)
+    public function update(Request $request, $id)
     {
-        $data= Branches::where('code','=',$code)->update([
+        $data= Branches::where('code','=',$id)->update([
             "code"=> $request->code,
             "company"=> $request->company,
             "status"=> $request->status,

@@ -446,7 +446,7 @@ function Propertyform({
                         </Form.Item>
                     </Col>
                 </Row>
-                <div style={{ textAlign: "center" }}>0
+                <div style={{ textAlign: "center" }}>
                     <p>Note: Fields Marked with (<span style={{ color: "red" }}>*</span>) Astrik is Mandatory.</p>
                 </div>
                 <div className="btns-container">

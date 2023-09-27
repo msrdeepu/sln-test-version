@@ -109,8 +109,9 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $property)
+    public function destroy($id)
     {
-        //
+        Property::find($id)->delete();
+        return to_route('properties.index');
     }
 }

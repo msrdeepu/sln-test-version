@@ -103,8 +103,9 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        Company::find($id)->delete();
+        return to_route('company.index');
     }
 }

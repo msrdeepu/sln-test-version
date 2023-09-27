@@ -47,20 +47,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/company', [CompanyController::class, 'index'])->name('company.index');
     Route::get('/admin/company-create', [CompanyController::class, 'create'])->name('company.create');
     Route::post('/admin/company/store', [CompanyController::class, 'store'])->name('company.store');
+    Route::delete('/admin/company/{id}', [CompanyController::class, 'destroy']) -> name('company.destroy');
 
     Route::get('/admin/branches', [BranchesController::class, 'index'])->name('branches.index');
     Route::get('/admin/branches-create', [BranchesController::class, 'create'])->name('branches.create');
     Route::post('/admin/branches/store', [BranchesController::class, 'store'])->name('branches.store');
     Route::get('/admin/branches/{id}/edit',[BranchesController::class, 'edit'])->name('branches.edit');
+    Route::patch('admin/branches/{id}', [BranchesController::class, 'update'])->name('branches.update');
     Route::delete('/admin/branches/{id}', [BranchesController::class, 'destroy']) -> name('branches.destroy');
 
     Route::get('/admin/ventures', [VenturesController::class, 'index'])->name('ventures.index');
     Route::get('/admin/ventures-create', [VenturesController::class, 'create'])->name('ventures.create');
     Route::post('/admin/ventures/store', [VenturesController::class, 'store'])->name('ventures.store');
+    Route::delete('/admin/ventures/{id}', [VenturesController::class, 'destroy']) -> name('ventures.destroy');
 
     Route::get('/admin/properties', [PropertyController::class, 'index'])->name('properties.index');
     Route::get('/admin/properties-create', [PropertyController::class, 'create'])->name('properties.create');
     Route::post('/admin/properties/store', [PropertyController::class, 'store'])->name('properties.store');
+    Route::delete('/admin/properties/{id}', [PropertyController::class, 'destroy']) -> name('properties.destroy');
 
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
     Route::get('/setting/{id}/edit', [SettingController::class, 'edit'])->name('setting.edit');

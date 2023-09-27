@@ -21,8 +21,13 @@ function Createbranch({ props, record }) {
 
     const submitForm = (values) => {
         console.log(data);
-        router.post("/admin/branches/store", data);
+        post("/admin/branches/store", data);
     };
+
+    //update form submission
+    const updateForm = (values) => {
+        patch(`/admin/${record.id}`, data)
+    }
 
 
     return (
@@ -35,9 +40,9 @@ function Createbranch({ props, record }) {
                     submitForm={submitForm}
                     setData={setData}
                     data={data}
-                    saveButton={record.name == undefined ? "Add" : "Save"}
+                    saveButton={record == [] ? "Add" : "Save"}
                 />
-                {/* {console.log(record.name)} */}
+                {console.log(record.code)}
             </Card>
         </>
     );
