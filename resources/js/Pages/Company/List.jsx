@@ -19,15 +19,6 @@ function destroyRecord(e) {
     }
 }
 
-const data = [
-    {
-        id: "1",
-        logo: "logo",
-        pan: "demo",
-        gst: "demo",
-        email: "demo@demo.com",
-    },
-];
 
 function Companylist({ props, resource }) {
 
@@ -107,7 +98,11 @@ function Companylist({ props, resource }) {
         <>
             <Head title="Dashboard" />
 
+
             <Card title={`Welcome to Companies Page`}>
+                {/* //test */}
+                {/* {console.log(resource[0].logo)}
+                <img src={resource[0].logo} /> */}
                 <Typography.Text>
                     <div className="top-container">
                         <h3>Companies List</h3>

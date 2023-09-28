@@ -3,14 +3,8 @@ import { Head, useForm, router } from "@inertiajs/react";
 import CompanyForm from "./CompanyForm";
 import {
     Card,
-    Form,
     Input,
-    Radio,
-    Row,
-    Col,
-    Button,
 } from "antd";
-const { TextArea } = Input;
 
 function Createcompany({ props, record }) {
 

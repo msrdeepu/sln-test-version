@@ -72,10 +72,11 @@ class BranchesController extends Controller
     {
         $user = Auth::user();
         $branches = Branches::get(['id','code', 'company', 'location','email', 'phonenumber', 'mobilenumber', 'status', 'address', 'id AS key']);
-        $branh= Branches::find($id);
+        $branch= Branches::find($id);
         return Inertia::render('Branches/Createbranch', [
             'user' => $user,
-            'record' => $branches,
+            'branchesList' => $branches,
+            'record' => $branch,
         ]);
     }
 
@@ -84,7 +85,7 @@ class BranchesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data= Branches::where('code','=',$id)->update([
+        $data= Branches::where('id','=',$id)->update([
             "code"=> $request->code,
             "company"=> $request->company,
             "status"=> $request->status,
@@ -95,6 +96,7 @@ class BranchesController extends Controller
             "address"=> $request->address,
     
         ]);
+        return to_route('branches.index');
     }
 
     /**
