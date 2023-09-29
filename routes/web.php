@@ -63,6 +63,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/properties', [PropertyController::class, 'index'])->name('properties.index');
     Route::get('/admin/properties-create', [PropertyController::class, 'create'])->name('properties.create');
+    Route::get('/admin/properties/{id}/edit',[PropertyController::class, 'edit'])->name('properties.edit');
+    Route::patch('/admin/properties/{id}', [PropertyController::class, 'update'])->name('properties.update');
     Route::post('/admin/properties/store', [PropertyController::class, 'store'])->name('properties.store');
     Route::delete('/admin/properties/{id}', [PropertyController::class, 'destroy']) -> name('properties.destroy');
 

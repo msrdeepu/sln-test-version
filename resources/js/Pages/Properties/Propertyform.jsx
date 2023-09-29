@@ -1,4 +1,4 @@
-
+import { router } from "@inertiajs/react";
 import {
     DatePicker,
     Button,
@@ -8,6 +8,13 @@ import {
     Input,
     Select,
 } from "antd";
+
+//oncancelhandler
+const onCancelHandler = () => {
+    if (confirm("Are you sure you want to cancel ?")) {
+        router.get(route("properties.index"));
+    }
+}
 
 //custom css file
 import "./property.css";
@@ -453,7 +460,7 @@ function Propertyform({
                     <Button className="btn-item" type="primary" onClick={afterSubmitHandler}>
                         {savebutton}
                     </Button>
-                    <Button className="btn-item" type="primary" danger>
+                    <Button onClick={onCancelHandler} className="btn-item" type="primary" danger>
                         Cancel
                     </Button>
                 </div>

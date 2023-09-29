@@ -108,9 +108,6 @@ class PageController extends Controller
         }
 
 
-
-       // dd($requestData);
-
         $data = Page::create($requestData);
         $data->save();
 

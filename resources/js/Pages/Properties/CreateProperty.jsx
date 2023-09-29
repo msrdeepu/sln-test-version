@@ -1,5 +1,5 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, useForm } from "@inertiajs/react";
+import { Head, useForm, router } from "@inertiajs/react";
 import {
     Card,
     Input,
@@ -56,6 +56,12 @@ function CreateProperty({ props, record }) {
         post("/admin/properties/store", data);
     }
 
+    //udate form
+    const updateHandler = (values) => {
+        patch(`/admin/properties/${record.id}`, data)
+    }
+
+
 
     return (
         <>
@@ -63,10 +69,10 @@ function CreateProperty({ props, record }) {
 
             <Card title={`Property Details`}>
                 <Propertyform
-                    submitForm={sumbmitHandler}
+                    submitForm={record.code == undefined ? sumbmitHandler : updateHandler}
                     data={data}
                     setData={setData}
-                    savebutton={"Save"}
+                    savebutton={record.code == undefined ? "Add" : "Save"}
                 />
             </Card>
         </>

@@ -14,6 +14,11 @@ function destroyRecord(e) {
     }
 }
 
+//Loading Edit View
+function editRecord(e) {
+    router.get(route("properties.edit", e.currentTarget.id));
+}
+
 
 function Propertylist({ props, resource }) {
 
@@ -64,7 +69,7 @@ function Propertylist({ props, resource }) {
                         style={{ margin: "5px" }}
                         shape="circle"
                         id={record.id}
-                        // onClick={editRecord}
+                        onClick={editRecord}
                         icon={<EditOutlined />}
                     />
                     <Button
