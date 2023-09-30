@@ -11,6 +11,7 @@ use App\Http\Controllers\ContentuploadController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\AgentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -67,6 +68,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/properties/{id}', [PropertyController::class, 'update'])->name('properties.update');
     Route::post('/admin/properties/store', [PropertyController::class, 'store'])->name('properties.store');
     Route::delete('/admin/properties/{id}', [PropertyController::class, 'destroy']) -> name('properties.destroy');
+
+    Route::get('/admin/agents', [AgentController::class, 'index'])-> name('agents.index');
+    Route::get('/admin/agents-create', [AgentController::class, 'create'])-> name('agents.create');
+    
 
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
     Route::get('/setting/{id}/edit', [SettingController::class, 'edit'])->name('setting.edit');
