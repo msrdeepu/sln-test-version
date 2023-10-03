@@ -1,12 +1,17 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
-import { Card, Table, Typography, Button, Col, Row, Space } from "antd";
+import { Card, Table, Typography, Button, Space } from "antd";
 
 //destroy record
 const destroyRecord = (e) => {
     if (confirm("Are you sure you want to delete this record ?")) {
         router.delete(route("ventures.destroy", e.currentTarget.id));
     }
+}
+
+//Loading Edit View
+function editRecord(e) {
+    router.get(route("ventures.edit", e.currentTarget.id));
 }
 
 //icons
@@ -16,15 +21,6 @@ import {
     PlusCircleOutlined,
 } from "@ant-design/icons";
 
-
-const data = [
-    {
-        id: "1",
-        code: "code",
-        url: "demo.com",
-        email: "demo@demo.com",
-    },
-];
 
 function Ventureslist({ props, ventruesList }) {
 
@@ -81,7 +77,7 @@ function Ventureslist({ props, ventruesList }) {
                         style={{ margin: "5px" }}
                         shape="circle"
                         id={record.id}
-                        // onClick={editRecord}
+                        onClick={editRecord}
                         icon={<EditOutlined />}
                     />
                     <Button

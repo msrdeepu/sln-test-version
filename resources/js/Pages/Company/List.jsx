@@ -19,8 +19,13 @@ function destroyRecord(e) {
     }
 }
 
+//Loading Edit View
+function editRecord(e) {
+    router.get(route("company.edit", e.currentTarget.id));
+}
 
-function Companylist({ props, resource }) {
+
+function Companylist({ props, companyList }) {
 
     //table columns
     const columns = [
@@ -79,7 +84,7 @@ function Companylist({ props, resource }) {
                         style={{ margin: "5px" }}
                         shape="circle"
                         id={record.id}
-                        //onClick={editRecord}
+                        onClick={editRecord}
                         icon={<EditOutlined />}
                     />
                     <Button
@@ -120,7 +125,7 @@ function Companylist({ props, resource }) {
                     </div>
                     <Table
                         columns={columns}
-                        dataSource={resource}
+                        dataSource={companyList}
                         size="small"
                     />
                 </Typography.Text>

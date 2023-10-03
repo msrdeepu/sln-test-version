@@ -34,9 +34,6 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
 
     return (
         <>
-
-
-
             <Form
                 layout="vertical"
                 form={form}

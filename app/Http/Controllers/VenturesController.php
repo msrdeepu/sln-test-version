@@ -14,10 +14,10 @@ class VenturesController extends Controller
     public function index()
     {
         {
-            $user = Auth::user();
-            $venture = Ventures::get(['id','code','sstatus', 'title', 'templateslug','slug','mapheight','location','mapwidth','branch','salevel','locationimg', 'layout', 'layoutmap', 'pagetitleseo','banner','largemap', 'metadescription', 'metakeywords', 'published', 'mainbody', 'extrabody', 'bodystyles', 'otherdetails', 'created_at', 'address', 'id as key']);
+           $resource = Ventures::get(['*', 'id as key']);
+            $ventures = Ventures::get(['id','code','sstatus', 'title', 'templateslug','slug','mapheight','location','mapwidth','branch','salevel','locationimg', 'layout', 'layoutmap', 'pagetitleseo','banner','largemap', 'metadescription', 'metakeywords', 'published', 'mainbody', 'extrabody', 'bodystyles', 'otherdetails', 'created_at', 'address', 'id as key']);
             return Inertia::render('Ventures/Ventureslist', [
-            'ventruesList' => $venture,
+            'ventruesList' => $ventures,
         ]);
         }
     }
@@ -84,17 +84,50 @@ class VenturesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ventures $ventures)
+    public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $ventures = Ventures::get(['id','code','sstatus', 'title', 'templateslug','slug','mapheight','location','mapwidth','branch','salevel','locationimg', 'layout', 'layoutmap', 'pagetitleseo','banner','largemap', 'metadescription', 'metakeywords', 'published', 'mainbody', 'extrabody', 'bodystyles', 'otherdetails', 'created_at', 'address', 'id as key']);
+        $venture = Ventures::find($id);
+        return Inertia::render('Ventures/Venturescreate', [
+            'user' => $user,
+            'ventruesList' => $ventures,
+            'record' => $venture,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ventures $ventures)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Ventures::where('id', '=', $id) -> update([
+            "code" => $request->code,
+            "sstatus" => $request->sstatus,
+            "title" => $request->title,
+            "templateslug" => $request->templateslug,
+            "slug" => $request->slug,
+            "mapheight" => $request->mapheight,
+            "location" => $request->location,
+            "mapwidth" => $request->mapwidth,
+            "branch" => $request->branch,
+            "salevel" => $request->salevel,
+            "locationimg" => $request->locationimg,
+            "layout" => $request->layout,
+            "layoutmap" => $request->layoutmap,
+            "pagetitleseo" => $request->pagetitleseo,
+            "banner" => $request->banner,
+            "largemap" => $request->largemap,
+            "metadescription" => $request->metadescription,
+            "metakeywords" => $request->metakeywords,
+            "address" => $request->address,
+            "published" => $request->published,
+            "mainbody" => $request->mainbody,
+            "extrabody"=>$request->extrabody,
+            "bodystyles" => $request->bodystyles,
+            "otherdetails" => $request->otherdetails
+        ]);
+        return to_route('ventures.index');
     }
 
     /**

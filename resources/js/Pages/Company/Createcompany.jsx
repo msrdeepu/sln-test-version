@@ -1,10 +1,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, useForm, router } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import CompanyForm from "./CompanyForm";
-import {
-    Card,
-    Input,
-} from "antd";
+import { Card } from "antd";
 
 function Createcompany({ props, record }) {
 
@@ -30,9 +27,14 @@ function Createcompany({ props, record }) {
     })
 
     function submitHandler(values) {
-        console.log(data)
+        //console.log(data)
         post("/admin/company/store", data);
 
+    }
+
+    //update form submission
+    const updateForm = (values) => {
+        patch(`/admin/company/${record.id}`, data)
     }
 
     return (
@@ -40,7 +42,13 @@ function Createcompany({ props, record }) {
             <Head title="Dashboard" />
 
             <Card title={`Company Details`}>
-                <CompanyForm submitForm={submitHandler} data={data} setData={setData} saveButton={"Save"} />
+                {console.log(record.code)}
+                <CompanyForm
+                    submitForm={record.companyname == undefined ? submitHandler : updateForm}
+                    setData={setData}
+                    data={data}
+                    saveButton={record.companyname == undefined ? "Add" : "Save"}
+                />
             </Card>
         </>
     );

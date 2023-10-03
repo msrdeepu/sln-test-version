@@ -1,5 +1,5 @@
 
-// import { useForm, router } from "@inertiajs/react";
+import { useForm, router } from "@inertiajs/react";
 //custom css
 import "./ventures.css";
 import {
@@ -12,16 +12,17 @@ import {
     Radio,
 } from "antd";
 
+const onCancelData = () => {
+    window.alert("Are You Sure Want to Cancel?");
+    router.get(route("ventures.index"));
+}
+
 import { useState, useRef } from "react";
 const { TextArea } = Input;
 //rich text editor
 import JoditEditor from "jodit-react";
 
-function Venturesform({
-    submitForm,
-    setData,
-    data,
-    savebutton, }) {
+function Venturesform({ data, setData, submitForm, savebutton, record }) {
     const [form] = Form.useForm();
 
 
@@ -450,7 +451,7 @@ function Venturesform({
                     <Button className="btn-item" onClick={afterSubmitHandler} type="primary">
                         {savebutton}
                     </Button>
-                    <Button className="btn-item" type="primary" danger>
+                    <Button onClick={onCancelData} className="btn-item" type="primary" danger>
                         Cancel
                     </Button>
                 </div>

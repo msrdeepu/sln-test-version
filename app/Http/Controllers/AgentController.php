@@ -12,7 +12,7 @@ class AgentController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Users/Agents/index');
+        return Inertia::render('Users/Agents/Agentlist');
     }
 
     /**

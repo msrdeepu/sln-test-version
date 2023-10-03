@@ -45,16 +45,22 @@ function Venturescreate({ props, record }) {
         post("/admin/ventures/store", data);
     }
 
+    //updateHandler
+    const updateHandler = (values) => {
+        console.log(data);
+        patch(`/admin/ventures/${record.id}`, data)
+    }
+
     return (
         <>
             <Head title="Ventures" />
 
             <Card title={`Venture Details`}>
                 <Venturesform
-                    submitForm={submitHandler}
-                    data={data}
+                    submitForm={record.code == undefined ? submitHandler : updateHandler}
                     setData={setData}
-                    savebutton={"Save"}
+                    data={data}
+                    savebutton={record.code == undefined ? "Add" : "Save"}
                 />
             </Card>
         </>

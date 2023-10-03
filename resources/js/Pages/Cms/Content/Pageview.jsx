@@ -57,7 +57,11 @@ function Pageview({
                 </span>
             ),
             children: (
-                <PageMetaForm setData={setData} data={data} record={record} />
+                <PageMetaForm
+                    setData={setData}
+                    data={data}
+                    record={record}
+                />
             ),
         },
         {
@@ -127,7 +131,11 @@ function Pageview({
                 </span>
             ),
             children: (
-                <PageCtaForm setData={setData} data={data} record={record} />
+                <PageCtaForm
+                    setData={setData}
+                    data={data}
+                    record={record}
+                />
             ),
         },
     ];

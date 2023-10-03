@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/company', [CompanyController::class, 'index'])->name('company.index');
     Route::get('/admin/company-create', [CompanyController::class, 'create'])->name('company.create');
     Route::post('/admin/company/store', [CompanyController::class, 'store'])->name('company.store');
+    Route::get('/admin/company/{id}/edit',[CompanyController::class, 'edit'])->name('company.edit');
+    Route::patch('/admin/company/{id}', [CompanyController::class, 'update'])->name('company.update');
     Route::delete('/admin/company/{id}', [CompanyController::class, 'destroy']) -> name('company.destroy');
 
     Route::get('/admin/branches', [BranchesController::class, 'index'])->name('branches.index');
@@ -60,6 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/ventures', [VenturesController::class, 'index'])->name('ventures.index');
     Route::get('/admin/ventures-create', [VenturesController::class, 'create'])->name('ventures.create');
     Route::post('/admin/ventures/store', [VenturesController::class, 'store'])->name('ventures.store');
+    Route::get('/admin/ventures/{id}/edit',[VenturesController::class, 'edit'])->name('ventures.edit');
+    Route::patch('/admin/ventures/{id}', [VenturesController::class, 'update'])->name('ventures.update');
     Route::delete('/admin/ventures/{id}', [VenturesController::class, 'destroy']) -> name('ventures.destroy');
 
     Route::get('/admin/properties', [PropertyController::class, 'index'])->name('properties.index');

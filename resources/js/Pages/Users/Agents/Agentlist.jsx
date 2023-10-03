@@ -39,7 +39,7 @@ const columns = [
     },
 ];
 
-function Agents(props) {
+function Agentlist(props) {
     return (
         <>
             <Head title="Agents Page" />
@@ -69,6 +69,6 @@ function Agents(props) {
     );
 }
 
-Agents.layout = (page) => <AuthenticatedLayout children={page} />;
+Agentlist.layout = (page) => <AuthenticatedLayout children={page} />;
 
-export default Agents;
+export default Agentlist;

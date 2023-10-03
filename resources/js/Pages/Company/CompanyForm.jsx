@@ -1,3 +1,4 @@
+import { Head, router } from "@inertiajs/react";
 import {
     Form,
     Input,
@@ -8,9 +9,16 @@ import {
 } from "antd";
 const { TextArea } = Input;
 
-function CompanyForm({ data, setData, submitForm, saveButton }) {
+const onCancelData = () => {
+    window.alert("Are You Sure Want to Cancel?");
+    router.get(route("company.index"));
+}
+
+
+function CompanyForm({ data, setData, submitForm, saveButton, record }) {
     //antd-form
     const [form] = Form.useForm();
+
     const afterSubmitForm = () => {
         form.submit();
         form.setFieldsValue({
@@ -37,7 +45,6 @@ function CompanyForm({ data, setData, submitForm, saveButton }) {
     return (
         <>
             <Form layout="vertical"
-                method="post"
                 onFinish={submitForm}
                 form={form}
                 autoComplete="on"
@@ -261,13 +268,13 @@ function CompanyForm({ data, setData, submitForm, saveButton }) {
                     </Col>
                 </Row>
                 <div style={{ textAlign: "center" }}>
-                    <p>Note: Fields Marked with (*) Astrik is Mandatory.</p>
+                    <p>Note: Fields Marked with ( <span style={{ color: "red" }}>*</span> ) Astrik is Mandatory.</p>
                 </div>
                 <div className="btns-container">
                     <Button htmlType="submit" onClick={afterSubmitForm} className="btn-item" type="primary">
                         {saveButton}
                     </Button>
-                    <Button className="btn-item" type="primary" danger>
+                    <Button onClick={onCancelData} className="btn-item" type="primary" danger>
                         Cancel
                     </Button>
                 </div>
