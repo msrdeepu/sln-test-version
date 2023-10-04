@@ -10,7 +10,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\PaymentreceiptController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CashadvanceController;
 use App\Http\Controllers\ContentuploadController;
+use App\Http\Controllers\MonthlyincentiveController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContentController;
@@ -85,6 +87,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/paymentrecipts', [PaymentreceiptController::class, 'index'])-> name('paymentrecipts.index');
     Route::get('/admin/paymentrecipts-create', [PaymentreceiptController::class, 'create'])-> name('paymentrecipts.create');
     
+    Route::get('/admin/cashadvance', [CashadvanceController::class, 'index'])-> name('cashadvance.index');
+    Route::get('/admin/cashadvance-create', [CashadvanceController::class, 'create'])-> name('cashadvance.create');
+
+    Route::get('/admin/monthlyincentive', [MonthlyincentiveController::class, 'index'])-> name('monthlyincentive.index');
+    Route::get('/admin/monthlyincentive-create', [MonthlyincentiveController::class, 'create'])-> name('monthlyincentive.create');
 
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
     Route::get('/setting/{id}/edit', [SettingController::class, 'edit'])->name('setting.edit');
