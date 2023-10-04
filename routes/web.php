@@ -125,7 +125,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/receipts', [ReceiptController::class, 'index']) -> name('receipts.index');
     Route::get('/admin/receipts-create', [ReceiptController::class, 'create']) -> name('receipts.create');
-
     
 
     Route::get('/widget', [WidgetController::class, 'index'])->name('widget.index');
