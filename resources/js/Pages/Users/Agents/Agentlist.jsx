@@ -1,69 +1,120 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
-import { Card, Typography, Button, Table } from "antd";
+import { Card, Table, Typography, Button, Col, Row, Space } from "antd";
 
-import { PlusCircleOutlined } from "@ant-design/icons"
+//icons
+import {
+    EditOutlined,
+    DeleteOutlined,
+    PlusCircleOutlined,
+} from "@ant-design/icons";
 
 //dummy data source
 const dataSource = [
     {
-        key: '1',
-        name: 'Mike',
+        key: "1",
+        name: "Mike",
         age: 32,
-        address: '10 Downing Street',
+        address: "10 Downing Street",
     },
     {
-        key: '2',
-        name: 'John',
+        key: "2",
+        name: "John",
         age: 42,
-        address: '10 Downing Street',
+        address: "10 Downing Street",
     },
 ];
 
-//columns
+//table columns
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
+        title: "CODE",
+        dataIndex: "code",
+        key: "key",
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        title: "Location",
+        dataIndex: "location",
+        key: "key",
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: "Email",
+        dataIndex: "email",
+        key: "key",
+    },
+    {
+        title: "Phone",
+        dataIndex: "phonenumber",
+        key: "key",
+    },
+
+    {
+        title: "Mobile",
+        dataIndex: "mobilenumber",
+        key: "key",
+    },
+    {
+        title: "Active",
+        dataIndex: "status",
+        key: "key",
+    },
+
+    {
+        title: "Created On",
+        dataIndex: "created_at",
+        key: "key",
+    },
+    {
+        title: "Actions",
+        dataIndex: "actions",
+        render: (_, record) => (
+            <Space size="small">
+                <Button
+                    style={{ margin: "5px" }}
+                    shape="circle"
+                    //id={record.id}
+                    //onClick={editRecord}
+                    icon={<EditOutlined />}
+                />
+                <Button
+                    style={{ margin: "5px" }}
+                    shape="circle"
+                    //id={record.id}
+                    icon={<DeleteOutlined />}
+                    //onClick={destroyRecord}
+                    danger
+                />
+            </Space>
+        ),
     },
 ];
-
 function Agentlist(props) {
     return (
         <>
-            <Head title="Agents Page" />
+            <Head title="agents" />
 
-            <Card title={`Welcome, ${props.auth.user.name}`}>
-
-                <div className="top-container">
-                    <h3>Organizse Agents</h3>
-                    <Link
-                        href={window.route("agents.create")}
-                        type="button"
-                    >
-                        <Button
-                            type="primary"
-                            icon={<PlusCircleOutlined />}
+            <Card title={`Welcome to Agents Page`}>
+                <Typography.Text>
+                    <div className="top-container">
+                        <h3>Agents List</h3>
+                        <Link
+                            href={window.route("agents.create")}
+                            type="button"
                         >
-                            New Agent
-                        </Button>
-                    </Link>
-                </div>
-                <div style={{ marginTop: "15px" }}>
-                    <Table dataSource={dataSource} columns={columns} />
-                </div>
-
+                            <Button
+                                type="primary"
+                                icon={<PlusCircleOutlined />}
+                            >
+                                Create Agent
+                            </Button>
+                        </Link>
+                    </div>
+                    <Table
+                        columns={columns}
+                        dataSource={dataSource}
+                        size="small"
+                    />
+                </Typography.Text>
             </Card>
         </>
     );
