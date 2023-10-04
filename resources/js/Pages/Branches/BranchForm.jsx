@@ -1,22 +1,20 @@
-import { Head, router } from "@inertiajs/react";
-import { Card, Form, Input, Radio, Row, Col, Select, Button } from "antd";
+import { router } from "@inertiajs/react";
+import { Form, Input, Radio, Row, Col, Select, Button } from "antd";
 
 const { TextArea } = Input;
 
 const onCancelData = () => {
     window.alert("Are You Sure Want to Cancel?");
     router.get(route("branches.index"));
-}
+};
 
 function BranchForm({ data, setData, submitForm, saveButton, record }) {
     const [form] = Form.useForm();
-
 
     const handleCompany = (value) => {
         setData("company", value);
         console.log(value);
     };
-
 
     const handelForm = () => {
         form.submit();
@@ -52,12 +50,16 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
             >
                 <Row gutter={[8, 4]}>
                     <Col xs={24} md={12}>
-                        <Form.Item label="Code" name={'code'} rules={[
-                            {
-                                required: true,
-                                message: "Please Enter Code"
-                            },
-                        ]}>
+                        <Form.Item
+                            label="Code"
+                            name={"code"}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please Enter Code",
+                                },
+                            ]}
+                        >
                             <Input
                                 type="text"
                                 name="code"
@@ -69,12 +71,16 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
                         </Form.Item>
                     </Col>
                     <Col xs={24} md={12}>
-                        <Form.Item label="Company" name="company" rules={[
-                            {
-                                required: true,
-                                message: "Please Select Company"
-                            },
-                        ]}>
+                        <Form.Item
+                            label="Company"
+                            name="company"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please Select Company",
+                                },
+                            ]}
+                        >
                             <Select
                                 name="company"
                                 options={[
@@ -97,13 +103,16 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
                     </Col>
 
                     <Col xs={24} md={12}>
-                        <Form.Item label="Location" name={"location"}
+                        <Form.Item
+                            label="Location"
+                            name={"location"}
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please Enter Location"
+                                    message: "Please Enter Location",
                                 },
-                            ]}>
+                            ]}
+                        >
                             <Input
                                 name="location"
                                 type="text"
@@ -153,7 +162,6 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
 
                     <Col xs={24} md={12}>
                         <Form.Item
-
                             label="Status - Account Status is Active or Not"
                             name="status"
                             style={{
@@ -162,7 +170,7 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please Select Status"
+                                    message: "Please Select Status",
                                 },
                             ]}
                         >
@@ -193,7 +201,11 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
                     </Col>
                 </Row>
                 <div style={{ textAlign: "center" }}>
-                    <p>Note: Fields Marked with (<span style={{ color: "red" }}>*</span>) Astrik is Mandatory.</p>
+                    <p>
+                        Note: Fields Marked with (
+                        <span style={{ color: "red" }}>*</span>) Astrik is
+                        Mandatory.
+                    </p>
                 </div>
                 <div className="btns-container">
                     <Button
@@ -204,16 +216,18 @@ function BranchForm({ data, setData, submitForm, saveButton, record }) {
                     >
                         {saveButton}
                     </Button>
-                    <Button onClick={onCancelData} className="btn-item" type="primary" danger>
+                    <Button
+                        onClick={onCancelData}
+                        className="btn-item"
+                        type="primary"
+                        danger
+                    >
                         Cancel
                     </Button>
                 </div>
             </Form>
-
         </>
     );
 }
-
-
 
 export default BranchForm;

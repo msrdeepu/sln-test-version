@@ -7,6 +7,9 @@ use App\Http\Controllers\VenturesController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\PaymentreceiptController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ContentuploadController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\SettingController;
@@ -75,6 +78,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/agents', [AgentController::class, 'index'])-> name('agents.index');
     Route::get('/admin/agents-create', [AgentController::class, 'create'])-> name('agents.create');
+
+    Route::get('/admin/customer', [CustomerController::class, 'index'])-> name('customer.index');
+    Route::get('/admin/customer-create', [CustomerController::class, 'create'])-> name('customer.create');
+
+    Route::get('/admin/paymentrecipts', [PaymentreceiptController::class, 'index'])-> name('paymentrecipts.index');
+    Route::get('/admin/paymentrecipts-create', [PaymentreceiptController::class, 'create'])-> name('paymentrecipts.create');
     
 
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
@@ -107,6 +116,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/content/{id}', [ContentuploadController::class, 'destroy'])->name('content.destroy');
 
 
+    Route::get('/admin/receipts', [ReceiptController::class, 'index']) -> name('receipts.index');
+    Route::get('/admin/receipts-create', [ReceiptController::class, 'create']) -> name('receipts.create');
+
+    
 
     Route::get('/widget', [WidgetController::class, 'index'])->name('widget.index');
     Route::get('/widget/create', [WidgetController::class, 'create'])->name('widget.create');

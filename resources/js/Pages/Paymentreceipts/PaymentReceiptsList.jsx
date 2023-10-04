@@ -2,18 +2,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import { Card, Table, Typography, Button, Space } from "antd";
 
-//delete Action
-function destroyRecord(e) {
-    if (confirm("Are you sure you want to delete this record ?")) {
-        router.delete(route("branches.destroy", e.currentTarget.id));
-    }
-}
-
-//Loading Edit View
-function editRecord(e) {
-    router.get(route("branches.edit", e.currentTarget.id));
-}
-
 //icons
 import {
     EditOutlined,
@@ -68,16 +56,16 @@ const columns = [
                 <Button
                     style={{ margin: "5px" }}
                     shape="circle"
-                    id={record.id}
-                    onClick={editRecord}
+                    //id={record.id}
+                    //onClick={editRecord}
                     icon={<EditOutlined />}
                 />
                 <Button
                     style={{ margin: "5px" }}
                     shape="circle"
-                    id={record.id}
+                    //id={record.id}
                     icon={<DeleteOutlined />}
-                    onClick={destroyRecord}
+                    //onClick={destroyRecord}
                     danger
                 />
             </Space>
@@ -85,38 +73,34 @@ const columns = [
     },
 ];
 
-function Branches({ props, branchesList }) {
+function PaymentReceiptsList(props) {
     return (
         <>
             <Head title="Dashboard" />
 
-            <Card title={`Welcome to Branches Page`}>
+            <Card title={`Welcome to Payment Receipt Page`}>
                 <Typography.Text>
                     <div className="top-container">
-                        <h3>Branches List</h3>
+                        <h3>Payment Receipts List</h3>
                         <Link
-                            href={window.route("branches.create")}
+                            href={window.route("paymentrecipts.create")}
                             type="button"
                         >
                             <Button
                                 type="primary"
                                 icon={<PlusCircleOutlined />}
                             >
-                                New Branch
+                                New Payment Receipt
                             </Button>
                         </Link>
                     </div>
-                    <Table
-                        columns={columns}
-                        dataSource={branchesList}
-                        size="small"
-                    />
+                    <Table columns={columns} dataSource={""} size="small" />
                 </Typography.Text>
             </Card>
         </>
     );
 }
 
-Branches.layout = (page) => <AuthenticatedLayout children={page} />;
+PaymentReceiptsList.layout = (page) => <AuthenticatedLayout children={page} />;
 
-export default Branches;
+export default PaymentReceiptsList;
