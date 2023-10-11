@@ -42,32 +42,30 @@ class VenturesController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        $data= Ventures::create([
-            "code" => $request->code,
-            "sstatus" => $request->sstatus,
-            "title" => $request->title,
-            "templateslug" => $request->templateslug,
-            "slug" => $request->slug,
-            "mapheight" => $request->mapheight,
-            "location" => $request->location,
-            "mapwidth" => $request->mapwidth,
-            "branch" => $request->branch,
-            "salevel" => $request->salevel,
-            "locationimg" => $request->locationimg,
-            "layout" => $request->layout,
-            "layoutmap" => $request->layoutmap,
-            "pagetitleseo" => $request->pagetitleseo,
-            "banner" => $request->banner,
-            "largemap" => $request->largemap,
-            "metadescription" => $request->metadescription,
-            "metakeywords" => $request->metakeywords,
-            "address" => $request->address,
-            "published" => $request->published,
-            "mainbody" => $request->mainbody,
-            "extrabody"=>$request->extrabody,
-            "bodystyles" => $request->bodystyles,
-            "otherdetails" => $request->otherdetails
-        ]);
+        $locationimg = null;
+        $layoutmap = null;
+        $banner = null;
+        $largemap = null;
+        $requestData = $request->all();
+        if ($request -> file('locationimg')){
+            $locationimg = $request -> file('locationimg')->store('venture', 'public');
+            $requestData['locationimg'] = asset('storage/'. $locationimg);
+        }
+        if ($request -> file('layoutmap')){
+            $layoutmap = $request -> file('layoutmap')->store('venture', 'public');
+            $requestData['layoutmap'] = asset('storage/'. $layoutmap);
+        }
+        if ($request -> file('banner')){
+            $banner = $request -> file('banner')->store('venture', 'public');
+            $requestData['banner'] = asset('storage/'. $banner);
+        }
+        if ($request -> file('largemap')){
+            $largemap = $request -> file('largemap')->store('venture', 'public');
+            $requestData['largemap'] = asset('storage/'. $largemap);
+        }
+
+        
+        $data= Ventures::create($requestData);
         $data->save();
         return to_route('ventures.index');
 

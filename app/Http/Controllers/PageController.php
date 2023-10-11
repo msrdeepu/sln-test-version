@@ -133,7 +133,7 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-         $slayout = Setting::where('type', '=', 'LAYOUT')->where('status', '=', 'ACTIVE')->get(['name AS label', 'value', 'id AS key']);
+        $slayout = Setting::where('type', '=', 'LAYOUT')->where('status', '=', 'ACTIVE')->get(['name AS label', 'value', 'id AS key']);
         $sgroup = Setting::where('type', '=', 'GROUP')->where('status', '=', 'ACTIVE')->get(['name AS label', 'value', 'id AS key']);
         $sptype = Setting::where('type', '=', 'PTYPE')->where('status', '=', 'ACTIVE')->get(['name AS label', 'value', 'id AS key']);
         $spublish = Setting::where('type', '=', 'PUBLISH')->where('status', '=', 'ACTIVE')->get(['name AS label', 'value', 'id AS key']);
@@ -165,8 +165,6 @@ class PageController extends Controller
          if($record->attachment3 != null){
             $record->attachment3Path = asset('storage/'.$record->attachment3);
          }
-
-
 
         return Inertia::render('Cms/Content/Pageview', [
             'record' => $record,

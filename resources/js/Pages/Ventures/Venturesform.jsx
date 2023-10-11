@@ -330,12 +330,12 @@ function Venturesform({ data, setData, submitForm, savebutton, record }) {
                     </Col>
                     <Col xs={24} md={12}>
                         <Form.Item label="Location Image" name={"locationimg"}>
-                            <input
+                            <Input
                                 name={"locationimg"}
                                 className="input-item"
                                 type="file"
                                 onChange={(e) =>
-                                    setData("locationimg", e.target.value)
+                                    setData("locationimg", e.target.files[0])
                                 }
                             />
                         </Form.Item>
@@ -385,12 +385,12 @@ function Venturesform({ data, setData, submitForm, savebutton, record }) {
                     </Col>
                     <Col xs={24} md={12}>
                         <Form.Item label="Layout Map" name={"layoutmap"}>
-                            <input
+                            <Input
                                 name={"layoutmap"}
                                 className="input-item"
                                 type="file"
                                 onChange={(e) =>
-                                    setData("layoutmap", e.target.value)
+                                    setData("layoutmap", e.target.files[0])
                                 }
                             />
                         </Form.Item>
@@ -418,24 +418,24 @@ function Venturesform({ data, setData, submitForm, savebutton, record }) {
                     </Col>
                     <Col xs={24} md={12}>
                         <Form.Item label="Banner" name={"banner"}>
-                            <input
+                            <Input
                                 name={"banner"}
                                 className="input-item"
                                 type="file"
                                 onChange={(e) =>
-                                    setData("banner", e.target.value)
+                                    setData("banner", e.target.files[0])
                                 }
                             />
                         </Form.Item>
                     </Col>
                     <Col xs={24} md={12}>
                         <Form.Item label="Large Map" name={"largemap"}>
-                            <input
+                            <Input
                                 className="input-item"
                                 type="file"
                                 name={"largemap"}
                                 onChange={(e) =>
-                                    setData("largemap", e.target.value)
+                                    setData("largemap", e.target.files[0])
                                 }
                             />
                         </Form.Item>

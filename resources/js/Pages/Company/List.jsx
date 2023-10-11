@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
-import { Card, Table, Typography, Button, Col, Row, Space } from "antd";
+import { Card, Table, Typography, Button, Col, Row, Space, Image } from "antd";
 //icons
 import {
     EditOutlined,
@@ -24,15 +24,18 @@ function editRecord(e) {
     router.get(route("company.edit", e.currentTarget.id));
 }
 
-
-function Companylist({ props, companyList }) {
-
+function Companylist({ props, companyList, record }) {
     //table columns
     const columns = [
         {
             title: "Logo",
             dataIndex: "logo",
             key: "id",
+            render: (_, record) => (
+                <Space size="small">
+                    <Image width={100} src={record.logo} />
+                </Space>
+            ),
         },
         {
             title: "Domain",
@@ -99,15 +102,12 @@ function Companylist({ props, companyList }) {
             ),
         },
     ];
+
     return (
         <>
             <Head title="Dashboard" />
 
-
             <Card title={`Welcome to Companies Page`}>
-                {/* //test */}
-                {/* {console.log(resource[0].logo)}
-                <img src={resource[0].logo} /> */}
                 <Typography.Text>
                     <div className="top-container">
                         <h3>Companies List</h3>

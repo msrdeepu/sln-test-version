@@ -225,7 +225,9 @@ function CategoryForm({
                         <Form.Item label={imgTxt} name={"image"}>
                             <Input
                                 type="file"
-                                onChange={(e) => setData("image", e.target.files[0])}
+                                onChange={(e) =>
+                                    setData("image", e.target.files[0])
+                                }
                             />
                         </Form.Item>
                     </Col>
@@ -258,29 +260,27 @@ function CategoryForm({
 
                 <Row gutter={[3, 3]} style={{ textAlign: "center" }}>
                     <Col xs={24} md={24}>
-
-                  <div  style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}>
- <Form.Item  style={{ margin: "8px" }}>
-                            <Button type="primary" onClick={handelForm}>
-                                {savebutton}
-                            </Button>
-                        </Form.Item>
-                        <Form.Item  style={{ margin: "8px" }}>
-                            <Link
-                                href={window.route("category.index")}
-                                type="button"
-                            >
-                                <Button danger> Cancle </Button>
-                            </Link>
-                        </Form.Item>
-                                </div>
-
-
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <Form.Item style={{ margin: "8px" }}>
+                                <Button type="primary" onClick={handelForm}>
+                                    {savebutton}
+                                </Button>
+                            </Form.Item>
+                            <Form.Item style={{ margin: "8px" }}>
+                                <Link
+                                    href={window.route("category.index")}
+                                    type="button"
+                                >
+                                    <Button danger> Cancle </Button>
+                                </Link>
+                            </Form.Item>
+                        </div>
                     </Col>
-
                 </Row>
             </Form>
         </>

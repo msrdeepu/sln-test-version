@@ -4,7 +4,6 @@ import CompanyForm from "./CompanyForm";
 import { Card } from "antd";
 
 function Createcompany({ props, record }) {
-
     //useForm
     const { data, setData, post, patch, processing, errors, reset } = useForm({
         companyname: record.companyname,
@@ -23,31 +22,36 @@ function Createcompany({ props, record }) {
         bankdetails: record.bankdetails,
         terms: record.terms,
         note: record.note,
-        footer: record.footer
-    })
+        footer: record.footer,
+    });
 
     function submitHandler(values) {
         //console.log(data)
         post("/admin/company/store", data);
-
     }
 
     //update form submission
     const updateForm = (values) => {
-        patch(`/admin/company/${record.id}`, data)
-    }
+        patch(`/admin/company/${record.id}`, data);
+    };
 
     return (
         <>
             <Head title="Dashboard" />
 
             <Card title={`Company Details`}>
-                {console.log(record.code)}
                 <CompanyForm
-                    submitForm={record.companyname == undefined ? submitHandler : updateForm}
+                    record={record}
+                    submitForm={
+                        record.companyname == undefined
+                            ? submitHandler
+                            : updateForm
+                    }
                     setData={setData}
                     data={data}
-                    saveButton={record.companyname == undefined ? "Add" : "Save"}
+                    saveButton={
+                        record.companyname == undefined ? "Add" : "Save"
+                    }
                 />
             </Card>
         </>

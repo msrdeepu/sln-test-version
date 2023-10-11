@@ -1,6 +1,7 @@
-import { Head, router } from "@inertiajs/react";
-import { Form, Input, Radio, Row, Col, Button } from "antd";
+import { Head, router, Link } from "@inertiajs/react";
+import { Form, Input, Radio, Row, Col, Button, Image } from "antd";
 const { TextArea } = Input;
+import { DeleteOutlined } from "@ant-design/icons";
 
 const onCancelData = () => {
     window.alert("Are You Sure Want to Cancel?");
@@ -34,8 +35,25 @@ function CompanyForm({ data, setData, submitForm, saveButton, record }) {
         });
     };
 
+    let logoText = "Logo";
+    let logo = "";
+    if (record.logo != null) {
+        logoText = "Replace Logo";
+        logo = (
+            <>
+                <Image width={200} src={record.logo} />{" "}
+                <Link href={`/company/${record.id}/banner`} method="post">
+                    <Button shape="round" danger icon={<DeleteOutlined />}>
+                        Delete
+                    </Button>
+                </Link>
+            </>
+        );
+    }
+
     return (
         <>
+            {console.log(record)}
             <Form
                 layout="vertical"
                 onFinish={submitForm}
@@ -62,6 +80,7 @@ function CompanyForm({ data, setData, submitForm, saveButton, record }) {
                 }}
             >
                 <Row gutter={[8, 4]}>
+                    {console.log(record.logo)}
                     <Col xs={24} md={12}>
                         <Form.Item
                             label="Company Name"
@@ -187,7 +206,8 @@ function CompanyForm({ data, setData, submitForm, saveButton, record }) {
                         </Form.Item>
                     </Col>
                     <Col xs={24} md={12}>
-                        <Form.Item label="LOGO" name="logo">
+                        {logo}
+                        <Form.Item label={logoText} name="logo">
                             <Input
                                 type="file"
                                 onChange={(e) =>

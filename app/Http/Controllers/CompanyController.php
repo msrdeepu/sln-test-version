@@ -48,12 +48,6 @@ class CompanyController extends Controller
             $logo = $request->file('logo')->store('company', 'public' );            
             $requestData['logo'] = asset('storage/'.$logo);
         }
-
-        
-
-
-
-
         if ($request->file('qrcode')){
             $qrcode = $request->file('qrcode')->store('company', 'public');
             $requestData['qrcode'] = asset('storage/'.$qrcode);
@@ -81,6 +75,9 @@ class CompanyController extends Controller
        $user = Auth::user();
        $companies = Company::get(['id', 'companyname', 'domain', 'gstax', 'pan', 'upiId', 'email', 'phonenum', 'mobilenum', 'websiteslug', 'logo', 'qrcode', 'astatus', 'address', 'bankdetails', 'terms', 'note', 'footer', 'created_at']);
        $company = Company::find($id);
+       if($company->logo != null){
+        $company->logoPath = asset('storage/'.$company->logo);
+     }
        return Inertia::render('Company/Createcompany', [
         'user' => $user,
         'companyList' => $companies,
