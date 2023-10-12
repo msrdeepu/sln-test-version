@@ -3,7 +3,7 @@ import { Head, useForm } from "@inertiajs/react";
 import CompanyForm from "./CompanyForm";
 import { Card } from "antd";
 
-function Createcompany({ props, record }) {
+function Createcompany({ props, record, companyList }) {
     //useForm
     const { data, setData, post, patch, processing, errors, reset } = useForm({
         companyname: record.companyname,

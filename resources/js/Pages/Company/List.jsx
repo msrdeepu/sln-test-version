@@ -106,6 +106,8 @@ function Companylist({ props, companyList, record }) {
     return (
         <>
             <Head title="Dashboard" />
+            {console.log(record)}
+            {console.log(companyList)}
 
             <Card title={`Welcome to Companies Page`}>
                 <Typography.Text>

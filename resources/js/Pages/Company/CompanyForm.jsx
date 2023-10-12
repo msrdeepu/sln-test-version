@@ -8,32 +8,39 @@ const onCancelData = () => {
     router.get(route("company.index"));
 };
 
-function CompanyForm({ data, setData, submitForm, saveButton, record }) {
+function CompanyForm({
+    data,
+    setData,
+    submitForm,
+    saveButton,
+    record,
+    companyList,
+}) {
     //antd-form
     const [form] = Form.useForm();
 
-    const afterSubmitForm = () => {
-        form.submit();
-        form.setFieldsValue({
-            companyname: "",
-            domain: "",
-            gstax: "",
-            pan: "",
-            upiId: "",
-            email: "",
-            phonenum: "",
-            mobilenum: "",
-            websiteslug: "",
-            logo: "",
-            qrcode: "",
-            astatus: "",
-            address: "",
-            bankdetails: "",
-            terms: "",
-            note: "",
-            footer: "",
-        });
-    };
+    // const afterSubmitForm = () => {
+    //     form.submit();
+    //     form.setFieldsValue({
+    //         companyname: "",
+    //         domain: "",
+    //         gstax: "",
+    //         pan: "",
+    //         upiId: "",
+    //         email: "",
+    //         phonenum: "",
+    //         mobilenum: "",
+    //         websiteslug: "",
+    //         logo: "",
+    //         qrcode: "",
+    //         astatus: "",
+    //         address: "",
+    //         bankdetails: "",
+    //         terms: "",
+    //         note: "",
+    //         footer: "",
+    //     });
+    // };
 
     let logoText = "Logo";
     let logo = "";
@@ -53,34 +60,34 @@ function CompanyForm({ data, setData, submitForm, saveButton, record }) {
 
     return (
         <>
-            {console.log(record)}
             <Form
                 layout="vertical"
                 onFinish={submitForm}
                 form={form}
                 autoComplete="on"
                 initialValues={{
-                    companyname: data.companyname,
-                    domain: data.domain,
-                    gstax: data.gstax,
-                    pan: data.pan,
-                    upiId: data.upiid,
-                    email: data.email,
-                    phonenum: data.phonenum,
-                    mobilenum: data.mobilenum,
-                    websiteslug: data.websiteslug,
-                    logo: data.logo,
-                    qrcode: data.qrcode,
-                    astatus: data.astatus,
-                    address: data.address,
-                    bankdetails: data.bankdetails,
-                    terms: data.terms,
-                    note: data.note,
-                    footer: data.footer,
+                    companyname: data.companyname || "",
+                    domain: data.domain || "",
+                    gstax: data.gstax || "",
+                    pan: data.pan || "",
+                    upiId: data.upiid || "",
+                    email: data.email || "",
+                    phonenum: data.phonenum || "",
+                    mobilenum: data.mobilenum || "",
+                    websiteslug: data.websiteslug || "",
+                    logo: data.logo || "",
+                    qrcode: data.qrcode || "",
+                    astatus: data.astatus || "",
+                    address: data.address || "",
+                    bankdetails: data.bankdetails || "",
+                    terms: data.terms || "",
+                    note: data.note || "",
+                    footer: data.footer || "",
+                    logo: null,
+                    qrcode: null,
                 }}
             >
                 <Row gutter={[8, 4]}>
-                    {console.log(record.logo)}
                     <Col xs={24} md={12}>
                         <Form.Item
                             label="Company Name"
@@ -320,7 +327,7 @@ function CompanyForm({ data, setData, submitForm, saveButton, record }) {
                 <div className="btns-container">
                     <Button
                         htmlType="submit"
-                        onClick={afterSubmitForm}
+                        //onClick={afterSubmitForm}
                         className="btn-item"
                         type="primary"
                     >

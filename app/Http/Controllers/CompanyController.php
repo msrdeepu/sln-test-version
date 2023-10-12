@@ -72,16 +72,20 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-       $user = Auth::user();
-       $companies = Company::get(['id', 'companyname', 'domain', 'gstax', 'pan', 'upiId', 'email', 'phonenum', 'mobilenum', 'websiteslug', 'logo', 'qrcode', 'astatus', 'address', 'bankdetails', 'terms', 'note', 'footer', 'created_at']);
-       $company = Company::find($id);
-       if($company->logo != null){
-        $company->logoPath = asset('storage/'.$company->logo);
+ 
+    //    $companies = Company::get(['id', 'companyname', 'domain', 'gstax', 'pan', 'upiId', 'email', 'phonenum', 'mobilenum', 'websiteslug', 'logo', 'qrcode', 'astatus', 'address', 'bankdetails', 'terms', 'note', 'footer', 'created_at']);
+       
+       $record = Company::find($id);
+       
+       if($record->logo != null){
+        $record->logoPath = asset('storage/'.$record->logo);
+     }
+
+     if($record->qrcode != null){
+        $record->logoPath = asset('storage/'.$record->qrcode);
      }
        return Inertia::render('Company/Createcompany', [
-        'user' => $user,
-        'companyList' => $companies,
-        'record' => $company,
+        'record' => $record
        ]);
     }
 
