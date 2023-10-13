@@ -76,6 +76,11 @@ function Companylist({ props, companyList, record }) {
         {
             title: "Created On",
             dataIndex: "created_at",
+            // render: (_, record) => (
+            //     <>
+            //         <p>{record.created_at}</p>
+            //     </>
+            // ),
             key: "key",
         },
         {
@@ -106,8 +111,6 @@ function Companylist({ props, companyList, record }) {
     return (
         <>
             <Head title="Dashboard" />
-            {console.log(record)}
-            {console.log(companyList)}
 
             <Card title={`Welcome to Companies Page`}>
                 <Typography.Text>

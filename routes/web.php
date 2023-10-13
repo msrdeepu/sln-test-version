@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/company/{id}/edit',[CompanyController::class, 'edit'])->name('company.edit');
     Route::patch('/admin/company/{id}', [CompanyController::class, 'update'])->name('company.update');
     Route::delete('/admin/company/{id}', [CompanyController::class, 'destroy']) -> name('company.destroy');
+    Route::post('/admin/company/{id}/{asset}', [CompanyController::class, 'deleteasset'])->name('company.deleteasset');
 
     Route::get('/admin/branches', [BranchesController::class, 'index'])->name('branches.index');
     Route::get('/admin/branches-create', [BranchesController::class, 'create'])->name('branches.create');
